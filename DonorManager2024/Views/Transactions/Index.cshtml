@@ -1,0 +1,189 @@
+﻿@using DonorManager2024.Areas.Identity.Pages.Account
+@using DonorManager2024.Models
+@using DonorManager2024.Controllers
+
+@model IEnumerable<DonorManager2024.Models.Transactions>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>All Transactions</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Transaction" asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find your Transaction by <br/>
+            ID: <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+            Donor: <input type="text" name="donorName" value="@ViewData["CurrentFilterDonor"]" />
+            Campaign: <input type="text" name="campaignName" value="@ViewData["CurrentFilterCampaign"]" />
+            <br /><input type="submit" value="Search" class="btn btn-default" />
+        </p>
+    </div>
+</form>
+
+<table class="table table-striped border">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GiftAmount)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.GiftDate)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.PledgeAmt)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.PledgeBalance)
+            </th> *@
+            @* <th>
+                @Html.DisplayNameFor(model => model.CheckNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckRouteNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckAcctNum)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.PostDate)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.RecordType)
+            </th> *@
+            @* <th>
+                @Html.DisplayNameFor(model => model.GiftType)
+            </th> *@
+            @* <th>
+                @Html.DisplayNameFor(model => model.TransDate)
+            </th> *@
+            @* <th>
+                @Html.DisplayNameFor(model => model.TransExpDate)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateDate)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.GiftSource)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PetitionFlag)
+            </th> *@
+           @*  <th>
+                @Html.DisplayNameFor(model => model.Client)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.Donor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Campaign)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.BatchId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchNumber)
+            </th> *@
+            @* <th>
+                @Html.DisplayNameFor(model => model.KeyCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListId)
+            </th> 
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiftAmount)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.GiftDate)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.PledgeAmt)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.PledgeBalance)
+            </td> *@
+            @* <td>
+                @Html.DisplayFor(modelItem => item.CheckNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckRouteNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckAcctNum)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.PostDate)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.RecordType)
+            </td> *@
+            @* <td>
+                @Html.DisplayFor(modelItem => item.GiftType)
+            </td> *@
+            @* <td>
+                @Html.DisplayFor(modelItem => item.TransDate)
+            </td> *@
+            @* <td>
+                @Html.DisplayFor(modelItem => item.TransExpDate)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.GiftSource)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PetitionFlag)
+            </td> *@
+            @* <td>
+                @Html.DisplayFor(modelItem => item.Client.ClientCode)
+            </td> *@
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Donor">
+                @Html.DisplayFor(modelItem => item.Donor.PrimaryName)
+                </a>
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Campaign">
+                @Html.DisplayFor(modelItem => item.Campaign.CampaignName)
+                </a>
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.BatchId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatchNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KeyCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListId)
+            </td> 
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>*@
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.TransId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.TransId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.TransId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

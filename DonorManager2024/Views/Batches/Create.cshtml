@@ -1,0 +1,87 @@
+﻿@using DonorManager2024.Areas.Identity.Pages.Account
+@using Microsoft.AspNetCore.Identity
+@using DonorManager2024.ViewModels
+@using DonorManager2024.Data
+
+@model BatchesViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create a Batch</h1>
+
+@*<h4>Batches</h4>*@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BatchNum" class="control-label"></label>
+                <input asp-for="BatchNum" class="form-control" />
+                <span asp-validation-for="BatchNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PromoCat" class="control-label"></label>
+                <input asp-for="PromoCat" class="form-control" />
+                <span asp-validation-for="PromoCat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatchCount" class="control-label"></label>
+                <input asp-for="BatchCount" class="form-control" />
+                <span asp-validation-for="BatchCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatchAmount" class="control-label"></label>
+                <input asp-for="BatchAmount" class="form-control" />
+                <span asp-validation-for="BatchAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActualCount" class="control-label"></label>
+                <input asp-for="ActualCount" class="form-control" />
+                <span asp-validation-for="ActualCount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActualAmount" class="control-label"></label>
+                <input asp-for="ActualAmount" class="form-control" />
+                <span asp-validation-for="ActualAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepositError" class="control-label"></label>
+                <input asp-for="DepositError" class="form-control" />
+                <span asp-validation-for="DepositError" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenderTypeID" class="control-label"></label>
+                <input asp-for="TenderTypeID" class="form-control" />
+                <span asp-validation-for="TenderTypeID" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="BatchDate" class="control-label"></label>
+                <input asp-for="BatchDate" class="form-control" />
+                <span asp-validation-for="BatchDate" class="text-danger"></span>
+            </div> *@
+            @* <div class="form-group">
+                <label asp-for="Client" class="control-label"></label>
+                <select asp-for="Client" class="form-control" asp-items="ViewBag.ClientName"></select>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="SelectedClientId" class="control-label"></label>
+                <select asp-for="@Model.SelectedClientId" class="form-select" asp-items="ViewBag.Client" id="ClientId"></select>
+                <input asp-form='@Model.SelectedClientId' type="hidden" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

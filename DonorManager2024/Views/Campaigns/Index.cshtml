@@ -1,0 +1,175 @@
+﻿@using DonorManager2024.Models
+@using DonorManager2024.Controllers
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+@model IEnumerable<DonorManager2024.Models.Campaign>
+
+@{    
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*pop-up dialogue box for user if something is checked as null or doesn't match and return to index*@
+<h1>Campaign Library</h1>
+
+@if (User.IsInRole("ABData") || User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+<form asp-controller="Campaigns" asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find a Campaign by... <br/><br/>
+            Campaign Code: <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+            @* <details>
+                <div class="form-actions no-color">
+                    Campaign Name: <input type="text" name="campName" value="@ViewData["CurrentFilterCampName"]" />
+                    Job Name: <input type="text" name="jobName" value="@ViewData["CurrentFilterJobName"]" />
+                    Final Package Cost: <input type="text" name="finalPkgCost" value="@ViewData["CurrentFilterFinalCost"]" />
+                </div>
+            </details> *@
+            <br /><input type="submit" value="Search" class="btn btn-default" /><a asp-action="Index" class="btn btn-default">Remove Filter</a>
+        </p>
+    </div>
+</form>
+
+@if (User.IsInRole("ABData") || User.IsInRole("Admin"))
+{
+    <form asp-controller="Campaigns" asp-action="Index" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <hr />
+        <button type="submit">Upload</button>
+    </form>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var modelState in ViewData.ModelState.Values)
+        {
+            foreach (var error in modelState.Errors)
+            {
+                <div>@error.ErrorMessage</div>
+            }
+        }
+    </div>
+}
+@* else
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+} *@
+@* @if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+} *@
+@*Use if statement that may filter the following data based on logged in user*@
+<table class="table table-striped border">
+    <thead>
+        <tr>
+            @* <th>
+                @Html.DisplayNameFor(model => model.CampaignName)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.CampaignCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JobName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinalPkgCost)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.MailDate)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.PromotionId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChannelID)
+            </th> *@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.CampaignName)
+            </td> *@
+                @* @if (User.IsInRole("Client"))
+                @User.Identity?.Name
+            {
+
+            } *@
+            <td>
+                <a asp-action="Details" asp-route-id="@item.CampaignId">
+                        @Html.DisplayFor(modelItem => item.CampaignCode)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinalPkgCost)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.MailDate)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.ClientName)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.PromotionId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChannelID)
+            </td> *@
+                @if (User.IsInRole("ABData") || User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.CampaignId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.CampaignId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.CampaignId">Delete</a>
+                    </td>                    
+                }
+                @if (User.IsInRole("Client"))
+                {
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.CampaignId">Details</a> |
+                    </td>
+                    
+                }                   
+        </tr>}
+    </tbody>
+</table>
+
+@* @section Scripts{
+    <script type="text/javascript">
+        function openSuccessModal(strMessage) {
+            var myDiv = document.getElementById("MyModalSuccessAlertBody");
+            myDiv.innerHTML = strMessage;
+            $('#myModalSuccess').modal('show');
+        }
+        $(document).ready(function () {
+            var msg = "@TempData["SuccessMessage"]";
+            if (msg)
+                openSuccessModal(msg);
+        });
+    </script>
+} *@

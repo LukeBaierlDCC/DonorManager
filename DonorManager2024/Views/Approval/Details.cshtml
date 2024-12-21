@@ -1,0 +1,22 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using DonorManager.Models;
+@using DonorManager2024.ViewModels;
+@using Microsoft.AspNetCore.Identity
+@using DonorManager2024.Data
+
+@model UserApprovalViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+    </dl>
+</div>

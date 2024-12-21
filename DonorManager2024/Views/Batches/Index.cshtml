@@ -1,0 +1,83 @@
+﻿@model IEnumerable<DonorManager2024.Models.Batches>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Batches</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PromoCat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepositError)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenderTypeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatchNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PromoCat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatchCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatchAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepositError)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenderTypeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatchDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BatchId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BatchId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BatchId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<DonorManager2024.Models.Promotions>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>All Promotions</h1><br />
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p><br />
+<form asp-controller="Promotions" asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find your Promotion by <br />
+            ID: <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+            Promotion Code: <input type="text" name="promotionCode" value="@ViewData["CurrentFilterPromotionCode"]" />
+            Description: <input type="text" name="description" value="@ViewData["CurrentFilterPromotionDesc"]" /><br />
+            Fund Type: <input type="text" name="fundType" value="@ViewData["CurrentFilterFundType"]" /><br />
+            <input type="submit" value="Search" class="btn btn-default" />
+            <a asp-action="Index" class="btn btn-default">Remove Filter</a>
+        </p>
+    </div>
+</form>
+<table class="table table-striped border">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PromotionCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FundType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PromotionCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FundType)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PromotionId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PromotionId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PromotionId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

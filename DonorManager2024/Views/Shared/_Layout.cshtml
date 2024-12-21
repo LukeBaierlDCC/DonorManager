@@ -1,0 +1,297 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Donor Manager 2</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DonorManager2024.styles.css" asp-append-version="true" />
+</head>
+<body>
+    @*div class background gray color 300 #d1d5db*@
+    @* <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <img class="navbar-brand-logo" src="~/Images/abDataLogo.jpg" alt="ab Data Logo" style="width: 2%;" />
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Donor Manager 2</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Management
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" asp-area="" asp-controller="Donor" asp-action="Index">Donors</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Client" asp-action="Index">Clients</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Campaigns" asp-action="Index">Campaigns</a>
+                            </div>
+                        </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Users
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Roles" asp-action="Index">Roles</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Approval" asp-action="Index">User Queue</a>
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole("ABData") || User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Data Entry
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Batches" asp-action="Index">Nixies</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Batches" asp-action="Index">No Mail</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Batches" asp-action="Index">Batches</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="DonorFlags" asp-action="Index">Donor Flags</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Channels" asp-action="Index">Channels</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Promotions" asp-action="Index">Promotions</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Reports
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Analysis Reports</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Cashier Reports</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Deposit Reports</a>
+                                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Index">Donor Reports</a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header> *@
+
+    <div class="container-fluid" style="background-color: #e5e7eb;">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color: #d1d5db;">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-black min-vh-100">
+                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-black text-decoration-none">
+                        <img class="navbar-brand-logo" src="~/Images/abDataLogo.jpg" alt="ab Data Logo" style="width: 13%;" />
+                        <span class="fs-5 d-none d-sm-inline">  Donor Manager  </span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a asp-controller="Home" asp-action="Index" class="nav-link align-middle px-0 text-black">
+                                <span class="ms-1 d-none d-sm-inline"><b>Home</b></span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-black">
+                                <span class="ms-1 d-none d-sm-inline"><b>Clientele</b></></span>
+                            </a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu" style="background-color: #f3f4f6">
+                                <li class="w-100">
+                                    <a asp-controller="Donor" asp-action="Index" class="nav-link px-0 text-black">Donors</a>
+                                </li>
+                                <li class="w-100">
+                                    <a asp-controller="Client" asp-action="Index" class="nav-link px-0 text-black">Clients</a>
+                                </li>
+                                <li class="w-100">
+                                    <a asp-controller="Campaigns" asp-action="Index" class="nav-link px-0 text-black">Campaigns</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-black">
+                                    <span class="ms-1 d-none d-sm-inline"><b>Users</b></span>
+                                </a>
+                                <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu" style="background-color: #f3f4f6">
+                                    <li class="w-100">
+                                        <a asp-controller="Roles" asp-action="Index" class="nav-link px-0 text-black">Roles</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Approval" asp-action="Index" class="nav-link px-0 text-black">User Queue</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="AllUsers" asp-action="Index" class="nav-link px-0 text-black">Current Users</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-black">
+                                    <span class="ms-1 d-none d-sm-inline"><b>Admin</b></span>
+                                </a>
+                                <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu" style="background-color: #f3f4f6">
+                                    <li class="w-100">
+                                        <a asp-controller="DonorFlags" asp-action="Index" class="nav-link px-0 text-black">Donor Flags</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Channels" asp-action="Index" class="nav-link px-0 text-black">Channels</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Promotions" asp-action="Index" class="nav-link px-0 text-black">Promotions</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        
+                        @if (User.IsInRole("ABData") || User.IsInRole("Admin"))
+                        {@*
+                            <li class="nav-item">
+                                <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-black">
+                                    <span class="ms-1 d-none d-sm-inline"><b>Enter Transactions</b></span>
+                                </a>
+                                <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu" style="background-color: #f3f4f6">
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">AJ Committee</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">AJ Congress</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">B'Nai B'Rith</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">Ben Gurion University</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">Carnahan</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">Friends of Israel Science Tech</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">Habonim</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">HALT</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">Healthwell Foundation</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">Melancon</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">Project Interchange (AJCOMM)</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">Public Allies</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">Public Campaign</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">Save Darfur Collection</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">Union For Reform Judaism</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">Union of Councils For Soviet Jesuits</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Create" class="nav-link px-0 text-black">Yad Vashem</a>
+                                    </li> 
+                                </ul>
+                            </li>*@
+                            <li class="nav-item">
+                                <a href="#submenu5" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-black">
+                                    <span class="ms-1 d-none d-sm-inline"><b>Data Entry Actions</b></span>
+                                </a>
+                                <ul class="collapse nav flex-column ms-1" id="submenu5" data-bs-parent="#menu" style="background-color: #f3f4f6">
+                                    <li class="w-100">
+                                        <a asp-controller="Transactions" asp-action="Index" class="nav-link px-0 text-black">Transactions</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Batches" asp-action="Index" class="nav-link px-0 text-black">Batches</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Nixies" asp-action="Index" class="nav-link px-0 text-black">Nixies</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="NoMail" asp-action="Index" class="nav-link px-0 text-black">No Mail</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="CCRoster" asp-action="Index" class="nav-link px-0 text-black">CC Roster</a>
+                                    </li>                                    
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#submenu6" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-black">
+                                    <span class="ms-1 d-none d-sm-inline"><b>Reports</b></span>
+                                </a>
+                                <ul class="collapse nav flex-column ms-1" id="submenu6" data-bs-parent="#menu" style="background-color: #f3f4f6">
+                                    <li class="w-100">
+                                        <a asp-controller="Home" asp-action="Index" class="nav-link px-0 text-black">Analysis Reports</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Home" asp-action="Index" class="nav-link px-0 text-black">Cashier Reports</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Home" asp-action="Index" class="nav-link px-0 text-black">Deposit Reports</a>
+                                    </li>
+                                    <li class="w-100">
+                                        <a asp-controller="Home" asp-action="Index" class="nav-link px-0 text-black">Donor Reports</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                    
+                    </ul>
+                    <hr />
+                </div>
+            </div>
+            <div class="col py-3">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+@* 
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>       
+ *@
+    @* <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - DonorManager2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer> *@
+    <footer class="border-top footer text-muted">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div>
+                &copy; 2024 - DonorManager2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+            <div>
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

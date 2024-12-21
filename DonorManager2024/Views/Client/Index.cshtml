@@ -1,0 +1,129 @@
+﻿@using DonorManager2024.Models
+@using DonorManager2024.Controllers
+
+@model IEnumerable<DonorManager.Models.Client>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Clients</h1>
+
+@if (User.IsInRole("ABData") || User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+<form asp-controller="Donor" asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find your Donor by <br />
+            ID: <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+            First Name: <input type="text" name="donorName" value="@ViewData["CurrentFilterName"]" />
+            Last Name: <input type="text" name="donorSurname" value="@ViewData["CurrentFilterSurname"]" />
+            Street Address: <input type="text" name="donorAddress" value="@ViewData["CurrentFilterAddress"]" /><br />
+            <details>
+                <div class="form-actions no-color">
+                    Firm: <input type="text" name="donorFirm" value="@ViewData["CurrentFilterFirm"]" />
+                    Phone: <input type="text" name="donorPhone" value="@ViewData["CurrentFilterPhone"]" />
+                    Employer: <input type="text" name="donorEmployer" value="@ViewData["CurrentFilterEmployer"]" />
+                    E-mail: <input type="text" name="donorEmail" value="@ViewData["CurrentFilterEmail"]" /><br />
+                    City: <input type="text" name="donorCity" value="@ViewData["CurrentFilterCity"]" />
+                    Zip Code: <input type="text" name="donorZip" value="@ViewData["CurrentFilterZip"]" />
+                    Work Phone: <input type="text" name="donorWork" value="@ViewData["CurrentFilterWork"]" /><br />
+                    Join Date: <input type="text" name="donorJoin" value="@ViewData["CurrentFilterJoin"]" />
+                    Client Id: <input type="text" name="donorClient" value="@ViewData["CurrentFilterClient"]" />     
+                </div>
+            </details>
+            <br /><input type="submit" value="Search" class="btn btn-default" />
+        </p>
+    </div>
+</form>
+
+<form asp-controller="Client" asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find a Client: <br />
+            Client ID: <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+            <details>
+                <div class="form-actions no-color">
+                    Client Name: <input type="text" name="clientName" value="@ViewData["CurrentFilerClientName"]" />
+                    Client Code: <input type="text" name="clientCode" value="@ViewData["CurrentFilterClientCode"]" />
+                    Client Address: <input type="text" name="clientAddress" value="@ViewData["CurrentFilerClientAddress"]" />
+                    Client Phone: <input type="text" name="clientPhone" value="@ViewData["CurrentFilterClientPhone"]" /><br />
+                    Contact 1: <input type="text" name="clientContact1" value="@ViewData["CurrentFilerContact1"]" />
+                    Contact 2: <input type="text" name="clientContact2" value="@ViewData["CurrentFilterContact2"]" />
+                    Trans Dialog: <input type="text" name="clientDialog" value="@ViewData["CurrentFilterTransDialog"]" />
+                </div>
+            </details>          
+            <input type="submit" value="Search" class="btn btn-default" />
+        </p>
+    </div>
+</form>
+
+<table class="table table-striped border">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.ClientId">
+                @Html.DisplayFor(modelItem => item.ClientName)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDate)
+            </td>
+                @if (User.IsInRole("ABData") || User.IsInRole("Admin"))
+                {
+                    <td>                        
+                        <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
+                        <a asp-controller="Campaigns" asp-action="Index" asp-route-id="@item.Campaigns">Campaigns</a> |
+                        <a asp-controller="Donor" asp-action="Index" asp-route-id="@item.Donor">Donors</a> |
+                        <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a>
+                    </td>
+                }
+                @if (User.IsInRole("Client"))
+                {
+                    <td>
+                        <a asp-controller="Campaigns" asp-action="Index" asp-route-id="@item.Campaigns">Campaigns</a> |
+                        <a asp-controller="Donor" asp-action="Index" asp-route-id="@item.Donor">Donors</a> |
+                        <a asp-action="Details" asp-route-id="@item.ClientId">Details</a> |
+                    </td>
+                }
+        </tr>
+}
+    </tbody>
+</table>
+
+@* @section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(function () {
+            var $select = $("#ClientId");
+            var $options = $select.children("option");
+
+            $options.sort(function (a, b) {
+                return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase());
+            });
+
+            $select.empty().append($options);
+        });
+    </script>
+} *@

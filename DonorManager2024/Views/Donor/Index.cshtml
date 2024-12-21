@@ -1,0 +1,115 @@
+﻿@model IEnumerable<DonorManager.Models.Donor>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Donors</h1>
+
+@if (User.IsInRole("ABData") || User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+@*
+<p>
+    <a asp-action="">Request Update</a>
+</p>
+*@
+<form asp-controller="Donor" asp-action="Index" method="get">
+            <div class="form-actions no-color">
+                <p>
+                    Find your Donor by <br />
+                    ID: <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+                    First Name: <input type="text" name="donorName" value="@ViewData["CurrentFilterName"]" />
+                    Last Name: <input type="text" name="donorSurname" value="@ViewData["CurrentFilterSurname"]" /><br />
+                    Street Address: <input type="text" name="donorAddress" value="@ViewData["CurrentFilterAddress"]" />
+            <details>
+                <div class="form-actions no-color">
+                    Firm: <input type="text" name="donorFirm" value="@ViewData["CurrentFilterFirm"]" />
+                    Phone: <input type="text" name="donorPhone" value="@ViewData["CurrentFilterPhone"]" />
+                    Employer: <input type="text" name="donorEmployer" value="@ViewData["CurrentFilterEmployer"]" />
+                    E-mail: <input type="text" name="donorEmail" value="@ViewData["CurrentFilterEmail"]" /><br />
+                    City: <input type="text" name="donorCity" value="@ViewData["CurrentFilterCity"]" />
+                    Zip Code: <input type="text" name="donorZip" value="@ViewData["CurrentFilterZip"]" />
+                    Work Phone: <input type="text" name="donorWork" value="@ViewData["CurrentFilterWork"]" /><br />
+                    Join Date: <input type="text" name="donorJoin" value="@ViewData["CurrentFilterJoin"]" />
+                    Client Id: <input type="text" name="donorClient" value="@ViewData["CurrentFilterClient"]" />
+                </div>
+            </details>
+                    <br /><input type="submit" value="Search" class="btn btn-default" />
+                </p>
+            </div>
+</form>
+
+<table class="table table-striped border">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DonorId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrimaryName)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrimaryAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.JoinDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonorId)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.DonorId">
+                @Html.DisplayFor(modelItem => item.PrimaryName)
+                </a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrimaryAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JoinDate)
+            </td>
+                @if (User.IsInRole("ABData") || User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.DonorId">Edit</a> |                        
+                        <a asp-action="Delete" asp-route-id="@item.DonorId">Delete</a> |
+                        <a asp-action="Details" asp-route-id="@item.DonorId">Details</a> |
+                        @*<a asp-action="Request" asp-route-id="@item.DonorId">Edit Request</a> |
+                <a asp-action="ChangeLog" asp-route-id="@item.DonorId">Change Log</a>
+                *@
+                    </td>
+                }
+                @if (User.IsInRole("Client"))
+                {
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.DonorId">Details</a> |
+                    </td>
+                }
+        </tr>
+}
+    </tbody>
+</table>

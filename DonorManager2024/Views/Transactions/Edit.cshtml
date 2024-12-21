@@ -1,0 +1,156 @@
+﻿@using DonorManager2024.Models
+@using DonorManager2024.Models.DonorRelated
+@using DonorManager2024.ViewModels
+@using DonorManager2024.Controllers
+
+@model DonorManager2024.Models.Transactions
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit This Transaction</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TransId" />
+            <div class="form-group">
+                <label asp-for="GiftAmount" class="control-label"></label>
+                <input asp-for="GiftAmount" class="form-control" />
+                <span asp-validation-for="GiftAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GiftDate" class="control-label"></label>
+                <input asp-for="GiftDate" class="form-control" />
+                <span asp-validation-for="GiftDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PledgeAmt" class="control-label"></label>
+                <input asp-for="PledgeAmt" class="form-control" />
+                <span asp-validation-for="PledgeAmt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PledgeBalance" class="control-label"></label>
+                <input asp-for="PledgeBalance" class="form-control" />
+                <span asp-validation-for="PledgeBalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckNumber" class="control-label"></label>
+                <input asp-for="CheckNumber" class="form-control" />
+                <span asp-validation-for="CheckNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckRouteNum" class="control-label"></label>
+                <input asp-for="CheckRouteNum" class="form-control" />
+                <span asp-validation-for="CheckRouteNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckAcctNum" class="control-label"></label>
+                <input asp-for="CheckAcctNum" class="form-control" />
+                <span asp-validation-for="CheckAcctNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostDate" class="control-label"></label>
+                <input asp-for="PostDate" class="form-control" />
+                <span asp-validation-for="PostDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RecordType" class="control-label"></label>
+                <input asp-for="RecordType" class="form-control" />
+                <span asp-validation-for="RecordType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GiftType" class="control-label"></label>
+                <input asp-for="GiftType" class="form-control" />
+                <span asp-validation-for="GiftType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransDate" class="control-label"></label>
+                <input asp-for="TransDate" class="form-control" />
+                <span asp-validation-for="TransDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransExpDate" class="control-label"></label>
+                <input asp-for="TransExpDate" class="form-control" />
+                <span asp-validation-for="TransExpDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdateDate" class="control-label"></label>
+                <input asp-for="UpdateDate" class="form-control" />
+                <span asp-validation-for="UpdateDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GiftSource" class="control-label"></label>
+                <input asp-for="GiftSource" class="form-control" />
+                <span asp-validation-for="GiftSource" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PetitionFlag" class="control-label"></label>
+                <input asp-for="PetitionFlag" class="form-control" />
+                <span asp-validation-for="PetitionFlag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientId" class="control-label"></label>
+                <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
+                <span asp-validation-for="ClientId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DonorId" class="control-label"></label>
+                <select asp-for="DonorId" class="form-control" asp-items="ViewBag.DonorId"></select>
+                <span asp-validation-for="DonorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CampaignId" class="control-label"></label>
+                <select asp-for="CampaignId" class="form-control" asp-items="ViewBag.CampaignId"></select>
+                <span asp-validation-for="CampaignId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatchId" class="control-label"></label>
+                @* <input asp-for="BatchId" class="form-control"/> *@
+                <select asp-for="BatchId" class="form-control" asp-items="ViewBag.BatchId"></select>
+                <span asp-validation-for="BatchId" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="BatchNumber" class="control-label"></label>
+                <input asp-for="BatchNumber" class="form-control" />
+                <span asp-validation-for="BatchNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KeyCode" class="control-label"></label>
+                <input asp-for="KeyCode" class="form-control" />
+                <span asp-validation-for="KeyCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ListId" class="control-label"></label>
+                <input asp-for="ListId" class="form-control" />
+                <span asp-validation-for="ListId" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+
+            @* <div class="form-group">
+                <label asp-for="DonorFlagCheckBoxes" class="control-label">No TM</label>
+                <select asp-for="DonorFlagCheckBoxes" class="form-control" asp-items="ViewBag.NoTM" id="DonorFlagCheckId"></select>
+            </div>  *@           
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

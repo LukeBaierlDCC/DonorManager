@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DonorManager2024.styles.css" asp-append-version="true" />
+</head>
+
+<div class="text-center">
+    <h1 class="display-4">Donor Manager</h1>
+</div>
+@*div class background gray color 200 #e5e7eb*@
+    <body>
+        <div class="container-fluid entire-page-bg">
+            @if (User.IsInRole("Admin"))
+            {
+                <p>Welcome, @User.Identity?.Name!</p>
+                @*Add link for Admin to view table of all registered users, DonorFlags, channels and promotions.*@
+
+                @* <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="AllUsers" asp-action="Index">All Users (in progress)</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="Index">Clients</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Donor" asp-action="Index">Donors</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Campaigns" asp-action="Index">Campaigns</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="Index">Nixies</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Donor" asp-action="Index">No Mail</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Batches" asp-action="Index">Batches</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="DonorFlags" asp-action="Index">Donor Flags</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Channels" asp-action="Index">Channels</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Promotions" asp-action="Index">Promotions</a>
+            </li> *@
+            }
+            @if (User.IsInRole("Client"))
+            {
+                <p>Welcome, @User.Identity?.Name!</p>
+
+                @* <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="Index">Clients</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Donor" asp-action="Index">Donors</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Campaigns" asp-action="Index">Campaigns</a>
+            </li> *@
+            }
+            @if (User.IsInRole("ABData"))
+            {
+                <p>Welcome, @User.Identity?.Name!</p>
+
+                @* <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="Index">Clients</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Donor" asp-action="Index">Donors</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Campaigns" asp-action="Index">Campaigns</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Client" asp-action="Index">Nixies</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Donor" asp-action="Index">No Mail</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Transactions" asp-action="Index">Transactions</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Batches" asp-action="Index">Batches</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="DonorFlags" asp-action="Index">Donor Flags</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Channels" asp-action="Index">Channels</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Promotions" asp-action="Index">Promotions</a>
+            </li>     *@
+            }
+        </div>
+    </body>

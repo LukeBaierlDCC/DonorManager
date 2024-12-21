@@ -1,0 +1,69 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@* @using DonorManager2024.Models *@
+
+@using DonorManager.Models;
+@using DonorManager2024.ViewModels;
+@using Microsoft.AspNetCore.Identity
+@using DonorManager2024.Data
+
+@model List<UserApprovalViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Role Assignment:</h1>
+</div><br /><br /><br /><br /><br />
+
+
+<p>
+    <u>User Email</u>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+@*         @for (var i = 0; i < Model.Count; i++)
+        {
+            <th>
+                @Html.DisplayName(Model[i].Email)
+            </th>
+        } *@
+        </tr>
+    </thead>
+<tbody>
+        <form method="post" asp-action="SaveRole">
+            @for (var i = 0; i < Model.Count; i++)
+            {
+            <tr>                
+                <td>@Html.DisplayFor(modelitem => Model[i].Email)</td>
+                    @* <td>@Html.DisplayFor(modelitem=>user.EmailConfirmed)</td>*@
+                <td>
+
+                        @*@Html.DropDownListFor(Model => Model.UsersForApprovals.First().SelectedRole, Model.ValidUserRoles, "Please Select a Role",new { htmlattributes = new { @class = "form-control"} })*@
+                    <select asp-for="@Model[i].SelectedRoleId" class="form-select" asp-items="ViewBag.Roles"></select>
+
+                </td>
+                <td>
+                        @Html.ActionLink("Details", "Details", new { id = Model[i].UserId })
+                </td>
+                <th></th>
+            </tr>
+            <input asp-for='@Model[i].UserId' type="hidden" />
+            <input asp-for='@Model[i].Email' type="hidden" />
+            <input asp-for='@Model[i].SelectedRoleId' type="hidden" />
+
+
+            }
+
+
+        @* <input type="submit" value="Submit" class="btn btn-primary" /><br /><br /><br /> *@
+        <input type="submit" value="Submit" class="btn btn-primary" style="position: fixed; top: 200px; right: 100px;" />
+        
+
+
+        </form>
+    </tbody>
+</table>

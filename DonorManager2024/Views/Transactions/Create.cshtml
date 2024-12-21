@@ -1,0 +1,362 @@
+﻿@using DonorManager2024.Models
+@using DonorManager2024.Models.DonorRelated
+@using DonorManager2024.ViewModels
+@using DonorManager2024.Controllers
+@using DonorManager2024.Areas.Identity.Pages.Account
+@using Microsoft.AspNetCore.Identity
+@using DonorManager2024.Data
+@*
+@model DonorManager2024.Models.Transactions
+*@
+@model TransactionsViewModel
+
+@{
+    ViewData["Title"] = "Create";    
+}
+
+<h1>Create a Transaction</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="GiftAmount" class="control-label"></label>
+                <input asp-for="GiftAmount" class="form-control" />
+                <span asp-validation-for="GiftAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GiftDate" class="control-label"></label>
+                <input asp-for="GiftDate" class="form-control" />
+                <span asp-validation-for="GiftDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PledgeAmt" class="control-label"></label>
+                <input asp-for="PledgeAmt" class="form-control" />
+                <span asp-validation-for="PledgeAmt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PledgeBalance" class="control-label"></label>
+                <input asp-for="PledgeBalance" class="form-control" />
+                <span asp-validation-for="PledgeBalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckNumber" class="control-label"></label>
+                <input asp-for="CheckNumber" class="form-control" />
+                <span asp-validation-for="CheckNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckRouteNum" class="control-label"></label>
+                <input asp-for="CheckRouteNum" class="form-control" />
+                <span asp-validation-for="CheckRouteNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckAcctNum" class="control-label"></label>
+                <input asp-for="CheckAcctNum" class="form-control" />
+                <span asp-validation-for="CheckAcctNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostDate" class="control-label"></label>
+                <input asp-for="PostDate" class="form-control" />
+                <span asp-validation-for="PostDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RecordType" class="control-label"></label>
+                <input asp-for="RecordType" class="form-control" />
+                <span asp-validation-for="RecordType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GiftType" class="control-label"></label>
+                <input asp-for="GiftType" class="form-control" />
+                <span asp-validation-for="GiftType" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="TransDate" class="control-label"></label>
+                <input asp-for="TransDate" class="form-control" />
+                <span asp-validation-for="TransDate" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="TransExpDate" class="control-label"></label>
+                <input asp-for="TransExpDate" class="form-control" />
+                <span asp-validation-for="TransExpDate" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="UpdateDate" class="control-label"></label>
+                <input asp-for="UpdateDate" class="form-control" />
+                <span asp-validation-for="UpdateDate" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="GiftSource" class="control-label"></label>
+                <input asp-for="GiftSource" class="form-control" />
+                <span asp-validation-for="GiftSource" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PetitionFlag" class="control-label"></label>
+                <input asp-for="PetitionFlag" class="form-control" />
+                <span asp-validation-for="PetitionFlag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProgramCode" class="control-label"></label>
+                <input asp-for="ProgramCode" class="form-control" />
+                <span asp-validation-for="ProgramCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SourceCode" class="control-label"></label>
+                <input asp-for="SourceCode" class="form-control" />
+                <span asp-validation-for="SourceCode" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="ClientId" class="control-label"></label>
+                <select asp-for="ClientId" class ="form-control" asp-items="ViewBag.ClientId"></select>
+            </div> *@            
+            <div class="form-group">
+                <label asp-for="DonorId" class="control-label"></label>
+                <select asp-for="DonorId" class="form-control" asp-items="ViewBag.DonorId" id="DonorId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CampaignId" class="control-label"></label>
+                <select asp-for="CampaignId" class="form-control" asp-items="ViewBag.CampaignId" id="CampaignId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="BatchId" class="control-label"></label>
+                <select asp-for="BatchId" class="form-control" asp-items="ViewBag.BatchId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientId" class="control-label"></label>
+                <select asp-for="ClientId" class="form-control" asp-items="ViewBag.ClientId" id="ClientId"></select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Donor Flags</label>
+                <select asp-for="FlagId" class="form-select" asp-items="ViewBag.FlagName" id="FlagId"></select>
+                @Html.DropDownListFor(f => f.FlagId, Model.FlagListItems, "SELECT FLAG", new { Class = "ddlStyle", onchange = "SelectedIndexChanged()" })
+                <fieldset>
+                    <legend>DonorFlagViewModel</legend>
+                    <div class="display-label">
+                        <strong>@Html.DisplayNameFor(model => model.FlagId)</strong>
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.FlagId)
+                    </div>
+                    <div class="display-label">
+                        <strong>@Html.DisplayNameFor(model => model.FlagListItems)</strong>
+                    </div>
+                    <div class="display-field">
+                        @Html.DisplayFor(model => model.FlagListItems)
+                    </div>
+                </fieldset>
+            </div>
+
+            <script type="text/javascript">
+                function SelectIndexChanged() {
+                    document.demoForm.submit();    
+                }
+            </script>
+            @*
+            <div class="mb-3">
+                <label class="form-label">Donor Flags</label>
+                <select class="form-select" asp-for="FlagId"></select>
+            </div>
+ 
+            <div class="form-group">
+                <label asp-for="SelectedDonorFlagId" class="control-label"></label>
+                <select asp-for="SelectedDonorFlagId" class="form-control" asp-items="@(new SelectList(Model.DonorFlags, "FlagId", "FlagName"))"></select>
+            </div>
+            *@ 
+            @* <div>
+                @foreach (var dfcb in ViewData["DFCBOptions"] as List<DonorFlagCheckBoxes>)
+                {
+                    <input type="checkbox" name="selectedDFCBIds" value="@dfcb.DonorFlagCheckId" @(Model.DonorFlagCheckBoxes.Any(d => d.DonorFlagCheckId == dfcb.DonorFlagCheckId) ? "checked" : "") />
+                    <label>@dfcb.NoRenewal</label>
+                    <input type="checkbox" name="selectedDFCBIds" value="@dfcb.DonorFlagCheckId" @(Model.DonorFlagCheckBoxes.Any(d => d.DonorFlagCheckId == dfcb.DonorFlagCheckId) ? "checked" : "") />
+                    <label>@dfcb.NoTM</label>
+                    <input type="checkbox" name="selectedDFCBIds" value="@dfcb.DonorFlagCheckId" @(Model.DonorFlagCheckBoxes.Any(d => d.DonorFlagCheckId == dfcb.DonorFlagCheckId) ? "checked" : "") />
+                    <label>@dfcb.WillInfo</label>
+                    <input type="checkbox" name="selectedDFCBIds" value="@dfcb.DonorFlagCheckId" @(Model.DonorFlagCheckBoxes.Any(d => d.DonorFlagCheckId == dfcb.DonorFlagCheckId) ? "checked" : "") />
+                    <label>@dfcb.AnnualDonor</label>
+                    <input type="checkbox" name="selectedDFCBIds" value="@dfcb.DonorFlagCheckId" @(Model.DonorFlagCheckBoxes.Any(d => d.DonorFlagCheckId == dfcb.DonorFlagCheckId) ? "checked" : "") />
+                    <label>@dfcb.NoExchange</label>
+                    <input type="checkbox" name="selectedDFCBIds" value="@dfcb.DonorFlagCheckId" @(Model.DonorFlagCheckBoxes.Any(d => d.DonorFlagCheckId == dfcb.DonorFlagCheckId) ? "checked" : "") />
+                    <label>@dfcb.NoThankYou</label>
+                    <input type="checkbox" name="selectedDFCBIds" value="@dfcb.DonorFlagCheckId" @(Model.DonorFlagCheckBoxes.Any(d => d.DonorFlagCheckId == dfcb.DonorFlagCheckId) ? "checked" : "") />
+                    <label>@dfcb.Deceased</label>
+                    <input type="checkbox" name="selectedDFCBIds" value="@dfcb.DonorFlagCheckId" @(Model.DonorFlagCheckBoxes.Any(d => d.DonorFlagCheckId == dfcb.DonorFlagCheckId) ? "checked" : "") />
+                    <label>@dfcb.Petition</label>
+                }
+            </div> *@                        
+            
+            @* <div class="checkbox">
+                <input type="checkbox" name="selectedDFCBIds" value="NoRenewal">
+                <label asp-for="DonorFlagCheckBoxes" class="checkbox">No Renewal</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" name="selectedDFCBIds" value="NoTM">
+                <label asp-for="DonorFlagCheckBoxes" class="checkbox">Don't TM</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" name="selectedDFCBIds" value="WillInfo">
+                <label asp-for="DonorFlagCheckBoxes" class="checkbox">Will Info</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" name="selectedDFCBIds" value="AnnualDonor">
+                <label asp-for="DonorFlagCheckBoxes" class="checkbox">Annual Donor</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" name="selectedDFCBIds" value="NoExchange">
+                <label asp-for="DonorFlagCheckBoxes" class="checkbox">No Exchange</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" name="selectedDFCBIds" value="NoThankYou">
+                <label asp-for="DonorFlagCheckBoxes" class="checkbox">No Thank You</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" name="selectedDFCBIds" value="Deceased">
+                <label asp-for="DonorFlagCheckBoxes" class="checkbox">Deceased</label>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" name="selectedDFCBIds" value="Petition">
+                <label asp-for="DonorFlagCheckBoxes" class="checkbox">Petition</label>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DonorFlagCheckBoxes" name="selectedDFCBIds" class="control-label" value="FlagName">Misc Flag</label>
+                <input asp-for="DonorFlagCheckBoxes" class="form-control" />
+                <span asp-validation-for="DonorFlagCheckBoxes" class="text-danger"></span>
+            </div> *@
+            
+            @*<div class="checkbox">
+            <select asp-for="DonorFlagCheckBoxes" class="checkbox" asp-items="ViewBag.DonorFlagCheckBoxes" id="DonorFlagCheckId"></select>
+                <label asp-for="DonorFlagCheckBoxes" class="checkbox">No TM</label>
+            </div> *@
+            
+            @* <div class="form-group">
+                <label asp-for="KeyCode" class="control-label"></label>
+                <input asp-for="KeyCode" class="form-control" />
+                <span asp-validation-for="KeyCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ListId" class="control-label"></label>
+                <input asp-for="ListId" class="form-control" />
+                <span asp-validation-for="ListId" class="text-danger"></span> *@
+                @* <select asp-for="ListId" class="form-control" asp-items="ViewBag.ListId"></select> *@
+                @* <input asp-for="ListId" class="form-control" />
+                <span asp-validation-for="ListId" class="text-danger"></span>
+            </div>*@
+            @* <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+            </div> *@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    @* <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#ClientId").change(function () {
+                $("#DonorId").empty();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("LoadState")',
+                    dataType: 'json',
+                    data: { id: $("#ClientId").val() },
+
+                    success: function (donor) {
+                        $("DonorId").append('<option value="' + -1 + '">' +
+                            "Donor" + '</option>');
+
+                        $.each(donor, function (i, donor) {
+                            $("Index").append('<option value="' + donor.value + '">' +
+                                donor.type + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve donors.' + ex);
+                    }
+                });
+                return false;
+            })
+        })
+    </script> *@
+    <script>
+        $(function () {
+            var $select = $("#ClientId");
+            var $options = $select.children("option");
+
+            $options.sort(function (a, b) {
+                return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase());
+            });
+
+            $select.empty().append($options);
+        });
+    </script>
+    <script>
+        $(function () {
+            var $select = $("#DonorId");
+            var $options = $select.children("option");
+
+            $options.sort(function (a, b) {
+                return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase());
+            });
+
+            $select.empty().append($options);
+        });
+    </script>    
+    <script>
+        $(function () {
+            var $select = $("#CampaignId");
+            var $options = $select.children("option");
+
+            $options.sort(function (a, b) {
+                return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase());
+            });
+
+            $select.empty().append($options);
+        });
+    </script>    
+}
+
+
+@* @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#ClientId").change(function () {
+                $("#DonorId").empty();
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("LoadState")',
+                    dataType: 'json',
+                    data: { id: $("#ClientId").val() },
+
+                    success: function (donor) {
+                        $("DonorId").append('<option value="' + -1 + '">' +
+                            "Donor" + '</option>');
+
+                        $.each(donor, function (i, donor) {
+                            $("DonorIndex").append('<option value="' + donor.value + '">' +
+                                donor.type + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve donors.' + ex);
+                    }
+                });
+                return false;
+            })
+        })
+    </script>
+} *@

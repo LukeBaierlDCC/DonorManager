@@ -1,0 +1,196 @@
+﻿@using DonorManager2024.Areas.Identity.Pages.Account
+@using Microsoft.AspNetCore.Identity
+@using DonorManager2024.ViewModels
+
+@model DonorManager.Models.Donor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Donor</h1>
+
+@* <h4>Donor</h4> *@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="PrimaryName" class="control-label"></label>
+                <input asp-for="PrimaryName" class="form-control" />
+                <span asp-validation-for="PrimaryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondaryName" class="control-label"></label>
+                <input asp-for="SecondaryName" class="form-control" />
+                <span asp-validation-for="SecondaryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Firm" class="control-label"></label>
+                <input asp-for="Firm" class="form-control" />
+                <span asp-validation-for="Firm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrimaryAddress" class="control-label"></label>
+                <input asp-for="PrimaryAddress" class="form-control" />
+                <span asp-validation-for="PrimaryAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SecondAddress" class="control-label"></label>
+                <input asp-for="SecondAddress" class="form-control" />
+                <span asp-validation-for="SecondAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <input asp-for="State" class="form-control" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Zip" class="control-label"></label>
+                <input asp-for="Zip" class="form-control" />
+                <span asp-validation-for="Zip" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Country" class="control-label"></label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkPhone" class="control-label"></label>
+                <input asp-for="WorkPhone" class="form-control" />
+                <span asp-validation-for="WorkPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkPhoneExt" class="control-label"></label>
+                <input asp-for="WorkPhoneExt" class="form-control" />
+                <span asp-validation-for="WorkPhoneExt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneFax" class="control-label"></label>
+                <input asp-for="PhoneFax" class="form-control" />
+                <span asp-validation-for="PhoneFax" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Employer" class="control-label"></label>
+                <input asp-for="Employer" class="form-control" />
+                <span asp-validation-for="Employer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Occupation" class="control-label"></label>
+                <input asp-for="Occupation" class="form-control" />
+                <span asp-validation-for="Occupation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            @*hi gift amt*@
+            <div class="form-group">
+                <label asp-for="HiGiftAmt" class="control-label"></label>
+                <input asp-for="HiGiftAmt" class="form-control" />
+                <span asp-validation-for="HiGiftAmt" class="text-danger"></span>
+            </div>
+            @*total gift amt*@
+            <div class="form-group">
+                <label asp-for="TotalGiftAmt" class="control-label"></label>
+                <input asp-for="TotalGiftAmt" class="form-control" />
+                <span asp-validation-for="TotalGiftAmt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JoinDate" class="control-label"></label>
+                <input asp-for="JoinDate" class="form-control" />
+                <span asp-validation-for="JoinDate" class="text-danger"></span>
+            </div>
+            @*mrc date*@
+            <div class="form-group">
+                <label asp-for="MRCDate" class="control-label"></label>
+                <input asp-for="MRCDate" class="form-control" />
+                <span asp-validation-for="MRCDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client" class="control-label"></label>
+                <select asp-for="ClientId" class ="form-control" asp-items="ViewBag.ClientName"></select>
+            </div>
+
+            <table>
+                <tr>
+                    <td class="checkbox">
+                        @Html<DonorFlagCheckBoxes>.CheckBoxFor(@*Expression<Func<Donor, bool>>, object*@)</DonorFlagCheckBoxes>
+                    </td>
+                </tr>
+            </table>
+
+            @* <div class="form-group">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="donorFlagsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Donor Flags
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="donorFlagsDropdown">
+                        <div class="dropdown-item">
+                            <input type="checkbox" class="form-check-input" name="DonorFlags" value="Deceased" id="donorFlag_Deceased" />
+                            <label class="form-check-label" for="donorFlag_Deceased">Deceased</label>
+                        </div>
+                        <div class="dropdown-item">
+                            <input type="checkbox" class="form-check-input" name="DonorFlags" value="Petition" id="donorFlag_Petition" />
+                            <label class="form-check-label" for="donorFlag_Petition">Petition</label>
+                        </div>
+                        <div class="dropdown-item">
+                            <input type="checkbox" class="form-check-input" name="DonorFlags" value="No Exchange" id="donorFlag_NoExchange" />
+                            <label class="form-check-label" for="donorFlag_NoExchange">No Exchange</label>
+                        </div>
+                    </div>
+                </div> *@
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-menu').on('click', function (e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+}

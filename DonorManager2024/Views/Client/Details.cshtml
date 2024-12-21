@@ -1,0 +1,150 @@
+﻿@using DonorManager2024.Models
+
+@model DonorManager.Models.Client
+@* 
+@model IEnumerable<DonorManager.Models.Client>
+ *@
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Client Details</h1>
+
+@* @foreach (var item in Model)
+{
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ClientId)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.ClientId)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ClientCode)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.ClientCode)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ClientName)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ClientAddress)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.ClientAddress)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ClientPhone)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.ClientPhone)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Contact1)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.Contact1)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Contact2)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.Contact2)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TransDialog)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.TransDialog)
+            </dd>
+
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Delete" asp-route-id="@item.ClientId">Delete</a> |
+        <a asp-action="Edit" asp-route-id="@item.ClientId">Edit</a> |
+        <a asp-action="Index" asp-controller="Donor" asp-route-id="@item.Donor">List of Donors</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
+ *@
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ClientId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ClientId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ClientCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ClientCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ClientName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ClientName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ClientAddress)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ClientAddress)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ClientPhone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ClientPhone)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact1)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Contact1)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Contact2)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Contact2)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TransDialog)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TransDialog)
+        </dd>
+
+    </dl>
+</div>
+@if (User.IsInRole("ABData") || User.IsInRole("Admin"))
+{
+    <div>
+        <a asp-action="Create" asp-controller="Transactions">Create Transaction</a> |
+        <a asp-action="Delete" asp-route-id="@Model.ClientId">Delete</a> |
+        <a asp-action="Edit" asp-route-id="@Model.ClientId">Edit</a> |
+        <a asp-action="Index" asp-controller="Donor" asp-route-id="@Model.Donor">List of Donors</a> |
+        <a asp-action="Index">Back to List</a> |        
+    </div>
+}
+@if (User.IsInRole("Client"))
+{
+    <div>
+        <a asp-action="Index" asp-controller="Donor" asp-route-id="@Model.Donor">List of Donors</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
+

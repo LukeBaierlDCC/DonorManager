@@ -1,0 +1,88 @@
+﻿@using DonorManager2024.Areas.Identity.Pages.Account
+@using Microsoft.AspNetCore.Identity
+@using DonorManager2024.ViewModels;
+@using DonorManager2024.Data
+
+@model CreateClientViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create a Client</h1>
+
+@* <h4>Client</h4> *@
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ClientCode" class="control-label"></label>
+                <input asp-for="ClientCode" class="form-control" />
+                <span asp-validation-for="ClientCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientName" class="control-label"></label>
+                <input asp-for="ClientName" class="form-control" />
+                <span asp-validation-for="ClientName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientAddress" class="control-label"></label>
+                <input asp-for="ClientAddress" class="form-control" />
+                <span asp-validation-for="ClientAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientPhone" class="control-label"></label>
+                <input asp-for="ClientPhone" class="form-control" />
+                <span asp-validation-for="ClientPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact1" class="control-label"></label>
+                <input asp-for="Contact1" class="form-control" />
+                <span asp-validation-for="Contact1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contact2" class="control-label"></label>
+                <input asp-for="Contact2" class="form-control" />
+                <span asp-validation-for="Contact2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TransDialog" class="control-label"></label>
+                <input asp-for="TransDialog" class="form-control" />
+                <span asp-validation-for="TransDialog" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SelectedUserId" class="control-label"></label>      
+                <select asp-for="@Model.SelectedUserId" class="form-select" asp-items="ViewBag.Users" id="ClientId"></select>
+                <input asp-form='@Model.SelectedUserId' type="hidden" />                
+            </div>
+
+            <br /><br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(function () {
+            var $select = $("#ClientId");
+            var $options = $select.children("option");
+
+            $options.sort(function (a, b) {
+                return $(a).text().toUpperCase().localeCompare($(b).text().toUpperCase());
+            });
+
+            $select.empty().append($options);
+        });
+    </script>
+}

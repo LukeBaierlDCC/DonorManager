@@ -1,0 +1,73 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using DonorManager2024.Areas.Identity.Pages.Account
+@using Microsoft.AspNetCore.Identity
+@using DonorManager2024.ViewModels
+
+@* 
+@model DonorManager2024.ViewModels.AllUsersViewModel
+ *@
+@model AllUsers
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h1>Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SelectedRole)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SelectedRole)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmailConfirmed)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmailConfirmed)
+        </dd>
+    </dl>
+</div>
+
+@* 
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SelectedRole)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SelectedRole)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmailConfirmed)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmailConfirmed)
+        </dd>
+    </dl>
+</div>
+<div>    
+    <a asp-action="Index">Back to List</a>
+</div>
+ *@
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

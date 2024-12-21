@@ -1,0 +1,119 @@
+﻿@model IEnumerable<DonorManager2024.Models.MailGroup.Nixies>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Nixies</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Prefix1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Middle1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Last1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Suffix1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prefix2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Middle2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Last2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Suffix2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Primary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Zip)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prefix1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.First1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Middle1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Last1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Suffix1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prefix2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.First2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Middle2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Last2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Suffix2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Primary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Zip)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NixieId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NixieId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NixieId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

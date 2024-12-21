@@ -1,0 +1,125 @@
+﻿@model IEnumerable<DonorManager2024.Models.MailGroup.NoMail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>No Mail</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ClientId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PName1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FName1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MName1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LName1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PName2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FName2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MName2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LName2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Firm)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrimAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SecAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ZIP)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClientId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PName1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FName1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MName1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LName1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PName2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FName2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MName2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LName2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrimAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZIP)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NoMailId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NoMailId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NoMailId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

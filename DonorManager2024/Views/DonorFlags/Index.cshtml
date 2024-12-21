@@ -1,0 +1,85 @@
+﻿@using DonorManager2024.Models
+@using DonorManager2024.Controllers
+
+@model IEnumerable<DonorManager2024.Models.DonorRelated.DonorFlags>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Donor Flags</h1><br />
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p><br />
+<form asp-controller="DonorFlags" asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find Flag by Donor ID:<br/ >
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" />
+            <a asp-action="Index" class="btn btn-default">Remove Filter</a>
+        </p>
+    </div>
+</form>
+<table class="table table-striped border">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FlagId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAdded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlagName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Visibility)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Client.ClientName)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.Donor)
+            </th> *@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlagId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAdded)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlagName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Visibility)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.ClientName)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.DonorId)
+            </td> *@
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FlagId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FlagId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FlagId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
